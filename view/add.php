@@ -8,10 +8,10 @@
     <title>Document</title>
 </head>
 <body>
-<form action="actions/add.php" method="post">
+<form action="index.php?page=users&action=add" method="post">
     Name: <input type="text" name="name">
     Email: <input type="email" name="email">
-    Phone: <input type="text" name="phone">
+    Password: <input type="text" name="password">
     <button type="submit">Save</button>
 </form>
 </body>

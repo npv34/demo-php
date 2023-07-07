@@ -1,22 +1,3 @@
-<?php
-require_once "./src/models/Base.php";
-require_once "./src/models/User.php";
-
-$conn = new PDO('mysql:host=127.0.0.1;dbname=eshop-app', 'root', '123456@Abc');
-
-$query = 'SELECT * FROM users';
-
-$result = $conn->query($query);
-$data = $result->fetchAll();
-$users = [];
-
-foreach ($data as $item) {
-    $user = new \src\Model\User($item['name'], $item['email'], $item['phone'], $item['id']);
-    $users[] = $user;
-}
-
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,29 +7,17 @@ foreach ($data as $item) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="public/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-<h2>Danh sach nguoi dung</h2>
-<a href="view/add.php">ADD</a>
-<table>
-    <tr>
-        <td>#</td>
-        <td>Name</td>
-        <td>Email</td>
-        <td>Phone</td>
-        <td></td>
-    </tr>
+<div class="container">
+    <?php
 
-    <?php foreach($users as $index => $user) { ?>
-       <tr>
-           <td><?php echo $index + 1 ?></td>
-           <td><?php echo $user->getName() ?></td>
-           <td><?php echo $user->getEmail() ?></td>
-           <td><?php echo $user->getPhone() ?></td>
-           <td><a href="actions/delete.php?id=<?php echo $user->getId(); ?>">Delete</a></td>
-       </tr>
-    <?php  }  ?>
-</table>
+        require_once "router.php"
+    ?>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>
